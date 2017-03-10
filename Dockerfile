@@ -1,4 +1,4 @@
-FROM node:4-slim
+FROM node:7-slim
 MAINTAINER Raul Sanchez <rawmind@gmail.com>
 
 ENV SERVICE_HOME=/opt/cloud9 \
