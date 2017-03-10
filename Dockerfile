@@ -7,7 +7,6 @@ ENV SERVICE_HOME=/opt/cloud9 \
 
 RUN \
     useradd -G sudo -m dev &&\
-    echo "%sudo ALL = NOPASSWD : ALL" >> /etc/sudoers &&\
     mkdir -p $SERVICE_HOME $SERVICE_WORK && \
     chown -R dev $SERVICE_WORK &&\
     chown -R dev $SERVICE_HOME &&\
@@ -36,6 +35,7 @@ RUN \
     apt-get -t jessie-backports install -y  golang &&\
     apt-get install -y python3-all &&\
     apt-get install -y bzip2 sudo &&\
+    echo "%sudo ALL = NOPASSWD : ALL" >> /etc/sudoers &&\
     npm install -g async watchman bower phantomjs-prebuilt ember-cli gulp grunt-cli gulp-cli yo generator-angular-fullstack && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
