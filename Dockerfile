@@ -18,6 +18,7 @@ RUN mkdir -p $SERVICE_HOME $SERVICE_WORK && \
 
 # Install workspace requirement
 RUN \
+    echo "deb http://deb.debian.org/debian jessie-backports main" >> /etc/apt/sources.list &&\
     apt-get update && \
     apt-get -t jessie-backports install -y openjdk-8-jdk gradle maven &&\
     apt-get -t jessie-backports install -y  golang &&\
