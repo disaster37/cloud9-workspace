@@ -12,9 +12,10 @@ RUN \
     chown -R dev $SERVICE_WORK &&\
     chown -R dev $SERVICE_HOME &&\
     apt-get update && \
-    apt-get install -y python build-essential g++ libssl-dev apache2-utils git libxml2-dev && \
+    apt-get install -y python build-essential g++ libssl-dev apache2-utils git libxml2-dev
 
 USER dev
+
 RUN \
     git clone $SERVICE_URL $SERVICE_HOME && \
     cd $SERVICE_HOME && \
