@@ -37,6 +37,8 @@ RUN \
 ADD root /
 RUN chmod +x /tmp/*.sh
 
+USER dev
+
 WORKDIR $SERVICE_WORK
 
 EXPOSE 8080
