@@ -18,7 +18,7 @@ RUN mkdir -p $SERVICE_HOME $SERVICE_WORK && \
 
 # Install workspace requirement
 RUN \
-    npm install -g async watchman bower phantomjs-prebuilt ember-cli gulp grunt
+    npm install -g async watchman bower phantomjs-prebuilt ember-cli gulp grunt-cli gulp-cli yo generator-angular-fullstack
     apt-get update && \
     apt-get install openjdk-8-jdk gradle maven &&\
     apt-get install golang &&\
