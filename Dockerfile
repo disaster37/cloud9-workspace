@@ -19,13 +19,17 @@ RUN mkdir -p $SERVICE_HOME $SERVICE_WORK && \
 # Install workspace requirement
 RUN \
     apt-get update && \
-    apt-get install -y openjdk-7-jdk gradle maven &&\
-    apt-get install -y golang &&\
+    apt-get -t jessie-backports install -y openjdk-8-jdk gradle maven &&\
+    apt-get -t jessie-backports install -y  golang &&\
     apt-get install -y python3-all &&\
-    apt-get install -y bzip2 &&\
+    apt-get install -y bzip2 sudo &&\
     npm install -g async watchman bower phantomjs-prebuilt ember-cli gulp grunt-cli gulp-cli yo generator-angular-fullstack && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN \
+    useradd -G sudo -m dev &&\
+    chown -R dev $SERVICE_WORK
 
 
 
