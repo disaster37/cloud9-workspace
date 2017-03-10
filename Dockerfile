@@ -31,7 +31,8 @@ RUN \
 RUN \
     useradd -G sudo -m dev &&\
     echo "%sudo ALL = NOPASSWD : ALL" >> /etc/sudoers &&\
-    chown -R dev $SERVICE_WORK
+    chown -R dev $SERVICE_WORK &&\
+    chown -R dev $SERVICE_HOME
 
 
 
