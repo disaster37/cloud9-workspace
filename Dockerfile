@@ -19,7 +19,7 @@ RUN mkdir -p $SERVICE_HOME $SERVICE_WORK && \
 # Install workspace requirement
 RUN \
     apt-get update && \
-    apt-get install openjdk-8-jdk gradle maven &&\
+    apt-get install openjdk-7-jdk gradle maven &&\
     apt-get install golang &&\
     apt-get install python3-all &&\
     apt-get install bzip2 &&\
