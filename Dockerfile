@@ -34,15 +34,17 @@ RUN \
     apt-get -t jessie-backports install -y openjdk-8-jdk gradle maven &&\
     apt-get -t jessie-backports install -y  golang &&\
     apt-get install -y python3-all &&\
-    apt-get install -y bzip2 sudo &&\
+    apt-get install -y bzip2 sudo aptitude &&\
     echo "%sudo ALL = NOPASSWD : ALL" >> /etc/sudoers &&\
     npm install -g async watchman bower phantomjs-prebuilt ember-cli gulp grunt-cli gulp-cli yo generator-angular-fullstack && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-
+ENV JAVA_HOME "/usr/lib/jvm/java-8-openjdk-amd64"
 ADD root /
-RUN chmod +x /tmp/*.sh
+RUN \
+    chmod +x /tmp/*.sh &&\
+    chmod -R 777 /tmp
 
 USER dev
 
