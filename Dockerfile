@@ -36,7 +36,7 @@ RUN \
     apt-get -t jessie-backports install -y  golang &&\
     apt-get install -y python3-all &&\
     apt-get install -y bzip2 sudo aptitude &&\
-    apt-get -t jessie-backports install docker.io &&\
+    apt-get -t jessie-backports install -y docker.io &&\
     echo "%sudo ALL = NOPASSWD : ALL" >> /etc/sudoers &&\
     npm install -g async watchman bower phantomjs-prebuilt ember-cli gulp grunt-cli gulp-cli yo generator-angular-fullstack && \
     curl -L "https://github.com/docker/compose/releases/download/1.11.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose &&\
