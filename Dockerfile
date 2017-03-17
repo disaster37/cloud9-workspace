@@ -4,7 +4,7 @@ MAINTAINER Raul Sanchez <rawmind@gmail.com>
 ENV SERVICE_HOME=/opt/cloud9 \
     SERVICE_URL=https://github.com/c9/core.git \
     SERVICE_WORK=/workspace \
-    DOCKER_HOST=docker
+    DOCKER_HOST=docker:4444
 
 RUN \
     useradd -G sudo -m dev &&\
