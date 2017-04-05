@@ -35,8 +35,8 @@ RUN \
     apt-get -t jessie-backports install -y openjdk-8-jdk gradle maven &&\
     apt-get -t jessie-backports install -y  golang &&\
     apt-get -t jessie-backports install -y  git-flow &&\
-    apt-get install -y python3-all &&\
-    apt-get install -y bzip2 sudo aptitude &&\
+    apt-get install -y python3-all python3-pip python-pip &&\
+    apt-get install -y bzip2 sudo aptitude vim &&\
     apt-get -t jessie-backports install -y docker.io &&\
     echo "%sudo ALL = NOPASSWD : ALL" >> /etc/sudoers &&\
     npm install -g async watchman bower phantomjs-prebuilt ember-cli gulp grunt-cli gulp-cli yo generator-angular-fullstack && \
