@@ -4,11 +4,13 @@ MAINTAINER Raul Sanchez <rawmind@gmail.com>
 ENV SERVICE_HOME=/opt/cloud9 \
     SERVICE_URL=https://github.com/c9/core.git \
     SERVICE_WORK=/workspace \
-    DOCKER_HOST=docker:4444
+    DOCKER_HOST=docker:4444 \
+    GOPATH=/go
 
 RUN \
     useradd -G sudo -m dev &&\
     mkdir -p $SERVICE_HOME $SERVICE_WORK && \
+    mkdir -p /go && \
     chown -R dev $SERVICE_WORK &&\
     chown -R dev $SERVICE_HOME &&\
     apt-get update && \
@@ -39,6 +41,7 @@ RUN \
     apt-get install -y bzip2 sudo aptitude vim &&\
     apt-get -t jessie-backports install -y docker.io &&\
     echo "%sudo ALL = NOPASSWD : ALL" >> /etc/sudoers &&\
+    npm install -g npm &&\
     npm install -g async watchman bower phantomjs-prebuilt ember-cli gulp grunt-cli gulp-cli yo generator-angular-fullstack && \
     curl -L "https://github.com/docker/compose/releases/download/1.11.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose &&\
     chmod +x /usr/local/bin/docker-compose &&\
@@ -53,7 +56,7 @@ RUN \
 
 USER dev
 
-WORKDIR $SERVICE_WORK
+WORKDIR ["$SERVICE_WORK", "/home/dev"]
 
 EXPOSE 8080
 
