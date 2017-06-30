@@ -22,8 +22,7 @@ RUN \
     git clone $SERVICE_URL $SERVICE_HOME && \
     cd $SERVICE_HOME && \
     scripts/install-sdk.sh && \
-    sed -i -e 's_127.0.0.1_0.0.0.0_g' $SERVICE_HOME/configs/standalone.js &&\
-    curl -L https://raw.githubusercontent.com/c9/install/master/install.sh | bash
+    sed -i -e 's_127.0.0.1_0.0.0.0_g' $SERVICE_HOME/configs/standalone.js
 
 USER root
 RUN \
@@ -59,6 +58,6 @@ USER dev
 WORKDIR "$SERVICE_WORK"
 
 EXPOSE 8080
-VOLUME ["$SERVICE_WORK", "/home/dev"]
+VOLUME ["$SERVICE_WORK"]
 ENTRYPOINT ["/tmp/start.sh"]
 CMD ["--listen 0.0.0.0 -p 8080 -w $SERVICE_WORK"]
