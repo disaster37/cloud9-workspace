@@ -55,9 +55,9 @@ RUN \
 
 USER dev
 
-WORKDIR ["$SERVICE_WORK", "/home/dev"]
+WORKDIR "$SERVICE_WORK"
 
 EXPOSE 8080
-
+VOLUME ["$SERVICE_WORK", "/home/dev"]
 ENTRYPOINT ["/tmp/start.sh"]
 CMD ["--listen 0.0.0.0 -p 8080 -w $SERVICE_WORK"]
