@@ -11,6 +11,7 @@ RUN \
     useradd -G sudo -m dev &&\
     mkdir -p $SERVICE_HOME $SERVICE_WORK && \
     mkdir -p /go && \
+    chmod -R 777 /go &&\
     chown -R dev $SERVICE_WORK &&\
     chown -R dev $SERVICE_HOME &&\
     apt-get update && \
