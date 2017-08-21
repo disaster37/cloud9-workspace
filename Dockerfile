@@ -4,8 +4,10 @@ MAINTAINER Raul Sanchez <rawmind@gmail.com>
 ENV SERVICE_HOME=/opt/cloud9 \
     SERVICE_URL=https://github.com/c9/core.git \
     SERVICE_WORK=/workspace \
-    DOCKER_HOST=docker:4444 \
-    GOPATH=/go
+    DOCKER_HOST=docker:2375 \
+    GOPATH=/go \
+    EMBER_VERSION=2.13.3 \
+    DOCKER_COMPOSE_VERSION=1.11.2
 
 RUN \
     useradd -G sudo -m dev &&\
@@ -41,8 +43,9 @@ RUN \
     apt-get install -y bzip2 sudo aptitude vim &&\
     apt-get -t jessie-backports install -y docker.io &&\
     echo "%sudo ALL = NOPASSWD : ALL" >> /etc/sudoers &&\
-    npm install -g async watchman bower phantomjs-prebuilt ember-cli gulp grunt-cli gulp-cli yo generator-angular-fullstack && \
-    curl -L "https://github.com/docker/compose/releases/download/1.11.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose &&\
+    npm install -g npm &&\
+    npm install -g async watchman bower phantomjs-prebuilt ember-cli@${EMBER_VERSION} gulp grunt-cli gulp-cli yo generator-angular-fullstack && \
+    curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose &&\
     chmod +x /usr/local/bin/docker-compose &&\
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
