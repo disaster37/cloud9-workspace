@@ -13,6 +13,7 @@ RUN \
     useradd -G sudo -m dev &&\
     mkdir -p $SERVICE_HOME $SERVICE_WORK && \
     mkdir -p /go && \
+    chmod -R 777 /go &&\
     chown -R dev $SERVICE_WORK &&\
     chown -R dev $SERVICE_HOME &&\
     apt-get update && \
@@ -58,9 +59,9 @@ RUN \
 
 USER dev
 
-WORKDIR ["$SERVICE_WORK", "/home/dev"]
+WORKDIR "$SERVICE_WORK"
 
 EXPOSE 8080
-
+VOLUME ["$SERVICE_WORK"]
 ENTRYPOINT ["/tmp/start.sh"]
 CMD ["--listen 0.0.0.0 -p 8080 -w $SERVICE_WORK"]
