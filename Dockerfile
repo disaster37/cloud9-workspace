@@ -44,8 +44,7 @@ RUN \
     apt-get install -y bzip2 sudo aptitude vim &&\
     apt-get -t jessie-backports install -y docker.io &&\
     echo "%sudo ALL = NOPASSWD : ALL" >> /etc/sudoers &&\
-    npm install -g npm &&\
-    npm install -g async watchman bower phantomjs-prebuilt ember-cli@${EMBER_VERSION} gulp grunt-cli gulp-cli yo generator-angular-fullstack && \
+    npm install -g async watchman bower phantomjs-prebuilt silent-error esprima-fb ember-cli@${EMBER_VERSION} gulp grunt-cli gulp-cli yo generator-angular-fullstack && \
     curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose &&\
     chmod +x /usr/local/bin/docker-compose &&\
     apt-get clean && \
