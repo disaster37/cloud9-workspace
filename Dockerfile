@@ -42,7 +42,11 @@ RUN \
     apt-get -t jessie-backports install -y  git-flow &&\
     apt-get install -y python3-all python3-pip python-pip &&\
     apt-get install -y bzip2 sudo aptitude vim &&\
-    apt-get -t jessie-backports install -y docker.io &&\
+    apt-get install -y apt-transport-https ca-certificates curl gnupg2 software-properties-common &&\
+    curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add - &&\
+    add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable" &&\
+    apt-get update &&\
+    apt-get install docker-ce &&\
     echo "%sudo ALL = NOPASSWD : ALL" >> /etc/sudoers &&\
     npm install -g async watchman bower phantomjs-prebuilt silent-error esprima-fb ember-cli@${EMBER_VERSION} gulp grunt-cli gulp-cli yo generator-angular-fullstack && \
     curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose &&\
