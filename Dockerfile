@@ -1,4 +1,4 @@
-FROM node:4-slim
+FROM node:6-slim
 MAINTAINER Raul Sanchez <rawmind@gmail.com>
 
 ENV SERVICE_HOME=/opt/cloud9 \
@@ -6,8 +6,8 @@ ENV SERVICE_HOME=/opt/cloud9 \
     SERVICE_WORK=/workspace \
     DOCKER_HOST=docker:2375 \
     GOPATH=/go \
-    EMBER_VERSION=2.13.3 \
-    DOCKER_COMPOSE_VERSION=1.11.2
+    EMBER_VERSION=2.14.2 \
+    DOCKER_COMPOSE_VERSION=1.15.0
 
 RUN \
     useradd -G sudo -m dev &&\
