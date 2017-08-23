@@ -22,6 +22,7 @@ RUN \
 USER dev
 
 RUN \
+    export HOME=$SERVICE_HOME &&\
     git clone $SERVICE_URL $SERVICE_HOME && \
     cd $SERVICE_HOME && \
     scripts/install-sdk.sh && \
@@ -46,7 +47,7 @@ RUN \
     curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add - &&\
     add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable" &&\
     apt-get update &&\
-    apt-get install docker-ce &&\
+    apt-get install -y docker-ce &&\
     echo "%sudo ALL = NOPASSWD : ALL" >> /etc/sudoers &&\
     npm install -g async watchman bower phantomjs-prebuilt silent-error esprima-fb ember-cli@${EMBER_VERSION} gulp grunt-cli gulp-cli yo generator-angular-fullstack && \
     curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose &&\
