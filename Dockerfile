@@ -22,7 +22,6 @@ RUN \
 USER dev
 
 RUN \
-    export HOME=$SERVICE_HOME &&\
     git clone $SERVICE_URL $SERVICE_HOME && \
     cd $SERVICE_HOME && \
     scripts/install-sdk.sh && \
