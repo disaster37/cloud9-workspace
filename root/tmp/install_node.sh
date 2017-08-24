@@ -1,6 +1,7 @@
 #!/bin/sh
 
-NODE_VERSION=6.11.2
+echo "############# INSTALL NODEJS #############"
+
 NPM_CONFIG_LOGLEVEL=info
 YARN_VERSION=0.27.5
 
