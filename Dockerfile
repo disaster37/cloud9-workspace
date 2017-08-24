@@ -12,19 +12,33 @@ ENV SERVICE_HOME=/opt/cloud9 \
     NODE_VERSION=6.11.2 \
     PYTHON_VERSION=3.6.2 \
     PYTHON_PIP_VERSION=9.0.1 \
+    DOCKER_VERSION=17.06.1-ce \
     LANG=C.UTF-8 \
     PATH=/usr/local/bin:$GOPATH/bin:/usr/local/go/bin:$PATH
 
 
 
 COPY root /
+
+# Install devs require language and tools
 RUN sh /tmp/install_golang.sh
 RUN sh /tmp/install_node.sh
 RUN sh /tmp/install_python.sh
+RUN sh /tmp/install_docker.sh
+RUN sh /tmp/install_gitflow.sh
+
+# Install some usefull tools
+RUN apk add --update curl ssh git vim sudo
+
+# Clean image
+RUN apk del --purge deps &&\
+    rm /tmp/* /var/cache/apk/*
 
 RUN \
-    go version &&\
-    node --version &&\
-    npm --version &&\
-    python --version &&\
-    pip --version
+    echo "Go version: $(go version)" &&\
+    echo "Node version: $(node --version)" &&\
+    echo "NPM version: $(npm --version)" &&\
+    echo "Python version: $(python --version)" &&\
+    echo "Pip version: $(pip --version)" &&\
+    echo "Docker version: $(docker -v)" &&\
+    echo "Emberjs version: $(ember --version)"
