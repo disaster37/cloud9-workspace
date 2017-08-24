@@ -13,10 +13,7 @@ apk add --no-cache --virtual .build-deps \
 	;
 
 export \
-# set GOROOT_BOOTSTRAP such that we can actually build Go
     GOROOT_BOOTSTRAP="$(go env GOROOT)" \
-# ... and set "cross-building" related vars to the installed system's values so that we create a build targeting the proper arch
-# (for example, if our build host is GOARCH=amd64, but our build env/image is GOARCH=386, our build needs GOARCH=386)
 	GOOS="$(go env GOOS)" \
 	GOARCH="$(go env GOARCH)" \
 	GO386="$(go env GO386)" \
@@ -35,6 +32,7 @@ for p in /go-alpine-patches/*.patch; do
 		[ -f "$p" ] || continue;
 		patch -p2 -i "$p";
 done;
+echo "GO_BOOSTRAP: $GOROOT_BOOTSTRAP"
 ./make.bash;
 
 rm -rf /go-alpine-patches;
