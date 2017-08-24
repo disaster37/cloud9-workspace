@@ -1,7 +1,5 @@
 #!/bin/sh
 
-PYTHON_VERSION=3.6.2
-PYTHON_PIP_VERSION=9.0.1
 
 # ensure local python is preferred over distribution python
 PATH=/usr/local/bin:$PATH
@@ -9,7 +7,7 @@ PATH=/usr/local/bin:$PATH
 
 # install ca-certificates so that HTTPS works consistently
 # the other runtime dependencies for Python are installed later
-RUN apk add --no-cache ca-certificates
+apk add --no-cache ca-certificates
 
 GPG_KEY=0D96DF4D4110E5C43FBFB17F2D347EA6AA65421D
 
@@ -52,7 +50,6 @@ set -ex \
 		tk-dev \
 		xz-dev \
 		zlib-dev \
-# add build deps before removing fetch deps in case there's overlap
 	&& apk del .fetch-deps \
 	\
 	&& cd /usr/src/python \
@@ -86,7 +83,7 @@ set -ex \
 	&& rm -rf /usr/src/python
 
 # make some useful symlinks that are expected to exist
-RUN cd /usr/local/bin \
+cd /usr/local/bin \
 	&& ln -s idle3 idle \
 	&& ln -s pydoc3 pydoc \
 	&& ln -s python3 python \
@@ -95,7 +92,7 @@ RUN cd /usr/local/bin \
 # if this is called "PIP_VERSION", pip explodes with "ValueError: invalid truth value '<VERSION>'"
 
 
-RUN set -ex; \
+set -ex; \
 	\
 	apk add --no-cache --virtual .fetch-deps libressl; \
 	\

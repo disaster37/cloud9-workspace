@@ -20,3 +20,11 @@ ENV SERVICE_HOME=/opt/cloud9 \
 COPY root /
 RUN sh /tmp/install_golang.sh
 RUN sh /tmp/install_node.sh
+RUN sh /tmp/install_python.sh
+
+RUN \
+    go --version &&\
+    node --version &&\
+    npm --version &&\
+    python --version &&\
+    pip --version
