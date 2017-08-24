@@ -38,12 +38,13 @@ tar --extract \
     ;
 rm docker.tgz;
 
+# Install docker compose
+curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+
 apk del .fetch-deps; 
 
 dockerd -v;
 docker -v
 
 
-# Install docker compose
-wget "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -O /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
