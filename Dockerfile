@@ -23,7 +23,7 @@ RUN sh /tmp/install_node.sh
 RUN sh /tmp/install_python.sh
 
 RUN \
-    go --version &&\
+    go version &&\
     node --version &&\
     npm --version &&\
     python --version &&\

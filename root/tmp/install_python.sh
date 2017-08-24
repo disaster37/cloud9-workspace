@@ -1,5 +1,6 @@
 #!/bin/sh
 
+echo "############# INSTALL Python #############"
 
 # ensure local python is preferred over distribution python
 PATH=/usr/local/bin:$PATH
