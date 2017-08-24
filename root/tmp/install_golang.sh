@@ -1,5 +1,6 @@
 #!/bin/sh
 
+echo "############# INSTALL GOLANG #############"
 
 apk add --no-cache ca-certificates
 
