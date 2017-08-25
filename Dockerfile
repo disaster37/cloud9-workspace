@@ -4,10 +4,10 @@ MAINTAINER Raul Sanchez <rawmind@gmail.com>
 ENV SERVICE_HOME=/opt/cloud9 \
     SERVICE_URL=https://github.com/c9/core.git \
     SERVICE_WORK=/workspace \
-    USER=dev
-    GROUP=dev
-    UID=1001
-    GID=1001
+    USER=dev \
+    GROUP=dev \
+    UID=1001 \
+    GID=1001 \
     DOCKER_HOST=docker:2375 \
     GOPATH=/go \
     EMBER_VERSION=2.14.2 \
