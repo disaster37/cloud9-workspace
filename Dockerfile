@@ -25,7 +25,10 @@ ENV SERVICE_HOME=/opt/cloud9 \
 COPY root /
 RUN \
     addgroup -g ${GID} ${GROUP} && \
-    adduser -g "${USER} user" -D -G ${GROUP} -s /bin/bash -u ${UID} ${USER}
+    adduser -g "${USER} user" -D -G ${GROUP} -s /bin/bash -u ${UID} ${USER} &&\
+    mkdir -p $SERVICE_HOME $SERVICE_WORK && \
+    chown -R dev $SERVICE_WORK &&\
+    chown -R dev $SERVICE_HOME
 
 # Install devs require language and tools
 RUN sh /tmp/install_golang.sh
