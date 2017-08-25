@@ -45,7 +45,7 @@ USER dev
 RUN \
     git clone $SERVICE_URL $SERVICE_HOME && \
     cd $SERVICE_HOME && \
-    scripts/install-sdk.sh && \
+    sh scripts/install-sdk.sh && \
     sed -i -e 's_127.0.0.1_0.0.0.0_g' $SERVICE_HOME/configs/standalone.js
 USER root
 
