@@ -4,6 +4,10 @@ MAINTAINER Raul Sanchez <rawmind@gmail.com>
 ENV SERVICE_HOME=/opt/cloud9 \
     SERVICE_URL=https://github.com/c9/core.git \
     SERVICE_WORK=/workspace \
+    USER=dev
+    GROUP=dev
+    UID=1001
+    GID=1001
     DOCKER_HOST=docker:2375 \
     GOPATH=/go \
     EMBER_VERSION=2.14.2 \
@@ -19,6 +23,9 @@ ENV SERVICE_HOME=/opt/cloud9 \
 
 
 COPY root /
+RUN \
+    addgroup -g ${GID} ${GROUP} && \
+    adduser -g "${USER} user" -D -G ${GROUP} -s /bin/bash -u ${UID} ${USER}
 
 # Install devs require language and tools
 RUN sh /tmp/install_golang.sh
@@ -29,6 +36,15 @@ RUN sh /tmp/install_gitflow.sh
 
 # Install some usefull tools
 RUN apk add --update curl openssh-client git vim sudo
+
+# Install cloud9
+USER dev
+RUN \
+    git clone $SERVICE_URL $SERVICE_HOME && \
+    cd $SERVICE_HOME && \
+    scripts/install-sdk.sh && \
+    sed -i -e 's_127.0.0.1_0.0.0.0_g' $SERVICE_HOME/configs/standalone.js
+USER root
 
 # Clean image
 RUN rm /tmp/* /var/cache/apk/*
@@ -41,3 +57,16 @@ RUN \
     echo "Pip version: $(pip --version)" &&\
     echo "Docker version: $(docker -v)" &&\
     echo "Emberjs version: $(ember --version)"
+    
+RUN \
+    chmod +x /tmp/*.sh &&\
+    chmod -R 777 /tmp
+
+USER dev
+
+WORKDIR "$SERVICE_WORK"
+
+EXPOSE 8080
+VOLUME ["$SERVICE_WORK"]
+ENTRYPOINT ["/tmp/start.sh"]
+CMD ["--listen 0.0.0.0 -p 8080 -w $SERVICE_WORK"]
