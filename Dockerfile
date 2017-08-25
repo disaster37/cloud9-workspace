@@ -28,7 +28,7 @@ RUN sh /tmp/install_docker.sh
 RUN sh /tmp/install_gitflow.sh
 
 # Install some usefull tools
-RUN apk add --update curl ssh git vim sudo
+RUN apk add --update curl openssh-client git vim sudo
 
 # Clean image
 RUN apk del --purge deps &&\
