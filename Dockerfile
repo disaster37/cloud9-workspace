@@ -31,8 +31,7 @@ RUN sh /tmp/install_gitflow.sh
 RUN apk add --update curl openssh-client git vim sudo
 
 # Clean image
-RUN apk del --purge deps &&\
-    rm /tmp/* /var/cache/apk/*
+RUN rm /tmp/* /var/cache/apk/*
 
 RUN \
     echo "Go version: $(go version)" &&\
