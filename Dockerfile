@@ -38,7 +38,7 @@ RUN sh /tmp/install_docker.sh
 RUN sh /tmp/install_gitflow.sh
 
 # Install some usefull tools
-RUN apk add --update curl openssh-client git vim sudo bash make gcc python2
+RUN apk add --update curl openssh-client git vim sudo bash make gcc python2 ca-certificates
 
 # Install cloud9
 USER dev
