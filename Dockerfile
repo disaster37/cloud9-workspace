@@ -39,11 +39,13 @@ RUN \
 # Install some usefull tools
 RUN apt-get update &&\
     apt-get upgrade -y &&\
-    apt-get install --allow-unauthenticated -y python build-essential g++ libssl-dev apache2-utils git libxml2-dev tmux
+    apt-get install --allow-unauthenticated -y python build-essential g++ libssl-dev apache2-utils git libxml2-dev tmux wget bash curl
 
 # Install cloud9
 USER dev
-RUN wget -O - https://raw.githubusercontent.com/c9/install/master/install.sh | bash &&\
+RUN git clone $SERVICE_URL $SERVICE_HOME && \
+    cd $SERVICE_HOME && \
+    scripts/install-sdk.sh && \
     sed -i -e 's_127.0.0.1_0.0.0.0_g' $SERVICE_HOME/configs/standalone.js
 USER root
 
