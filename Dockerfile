@@ -2,7 +2,7 @@ FROM alpine:3.6
 MAINTAINER Raul Sanchez <rawmind@gmail.com>
 
 ENV SERVICE_HOME=/opt/cloud9 \
-    SERVICE_URL=https://github.com/c9/core.git \
+    SERVICE_URL=git://github.com/c9/core.git \
     SERVICE_WORK=/workspace \
     USER=dev \
     GROUP=dev \
@@ -17,8 +17,8 @@ ENV SERVICE_HOME=/opt/cloud9 \
     PYTHON_VERSION=3.6.2 \
     PYTHON_PIP_VERSION=9.0.1 \
     DOCKER_VERSION=17.06.1-ce \
-    LANG=C.UTF-8 \
-    PATH=/usr/local/bin:$GOPATH/bin:/usr/local/go/bin:$PATH
+    LANG=C.UTF-8
+#    PATH=/usr/local/bin:$GOPATH/bin:/usr/local/go/bin:$PATH
 
 
 
@@ -31,21 +31,20 @@ RUN \
     chown -R dev $SERVICE_HOME
 
 # Install devs require language and tools
-RUN sh /tmp/install_golang.sh
-RUN sh /tmp/install_node.sh
-RUN sh /tmp/install_python.sh
-RUN sh /tmp/install_docker.sh
-RUN sh /tmp/install_gitflow.sh
+#RUN sh /tmp/install_golang.sh
+#RUN sh /tmp/install_node.sh
+#RUN sh /tmp/install_python.sh
+#RUN sh /tmp/install_docker.sh
+#RUN sh /tmp/install_gitflow.sh
 
 # Install some usefull tools
-RUN apk add --update curl openssh-client git vim sudo bash make gcc python2 ca-certificates openssl-dev nodejs
+RUN apk update &&\
+    apk upgrade &&\
+    apk add wget curl openssh-client git vim sudo bash make gcc python2 ca-certificates libressl tmux
 
 # Install cloud9
 USER dev
-RUN \
-    git clone $SERVICE_URL $SERVICE_HOME && \
-    cd $SERVICE_HOME && \
-    sh scripts/install-sdk.sh && \
+RUN wget -O - https://raw.githubusercontent.com/c9/install/master/install.sh | bash &&\
     sed -i -e 's_127.0.0.1_0.0.0.0_g' $SERVICE_HOME/configs/standalone.js
 USER root
 
