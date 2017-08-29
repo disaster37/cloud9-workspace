@@ -1,4 +1,4 @@
-FROM debian:testing-slim
+FROM debian:stable-slim
 MAINTAINER Disaster <linuxworkgroup@hotmail.com>
 
 ENV SERVICE_HOME=/opt/cloud9 \
@@ -39,7 +39,7 @@ RUN \
 # Install some usefull tools
 RUN apt-get update &&\
     apt-get upgrade -y &&\
-    apt-get install -y python build-essential g++ libssl-dev apache2-utils git libxml2-dev tmux
+    apt-get install --allow-unauthenticated -y python build-essential g++ libssl-dev apache2-utils git libxml2-dev tmux
 
 # Install cloud9
 USER dev
