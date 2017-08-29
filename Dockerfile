@@ -1,8 +1,8 @@
-FROM alpine:3.6
-MAINTAINER Raul Sanchez <rawmind@gmail.com>
+FROM debian:buster-slim
+MAINTAINER Disaster <linuxworkgroup@hotmail.com>
 
 ENV SERVICE_HOME=/opt/cloud9 \
-    SERVICE_URL=git://github.com/c9/core.git \
+    SERVICE_URL=https://github.com/c9/core.git \
     SERVICE_WORK=/workspace \
     USER=dev \
     GROUP=dev \
@@ -24,8 +24,7 @@ ENV SERVICE_HOME=/opt/cloud9 \
 
 COPY root /
 RUN \
-    addgroup -g ${GID} ${GROUP} && \
-    adduser -g "${USER} user" -D -G ${GROUP} -s /bin/bash -u ${UID} ${USER} &&\
+    useradd -G sudo -m dev &&\
     mkdir -p $SERVICE_HOME $SERVICE_WORK && \
     chown -R dev $SERVICE_WORK &&\
     chown -R dev $SERVICE_HOME
@@ -38,9 +37,9 @@ RUN \
 #RUN sh /tmp/install_gitflow.sh
 
 # Install some usefull tools
-RUN apk update &&\
-    apk upgrade &&\
-    apk add wget curl openssh-client git vim sudo bash make gcc python2 ca-certificates libressl tmux tar gzip
+RUN apt-get update &&\
+    apt-get upgrade -y &&\
+    apt-get install -y python build-essential g++ libssl-dev apache2-utils git libxml2-dev tmux
 
 # Install cloud9
 USER dev
