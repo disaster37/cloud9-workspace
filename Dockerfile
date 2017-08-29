@@ -1,4 +1,4 @@
-FROM debian:stable
+FROM debian:testing-slim
 MAINTAINER Disaster <linuxworkgroup@hotmail.com>
 
 ENV SERVICE_HOME=/opt/cloud9 \
