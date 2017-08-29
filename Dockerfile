@@ -1,4 +1,4 @@
-FROM debian:buster-slim
+FROM debian:stable-slim
 MAINTAINER Disaster <linuxworkgroup@hotmail.com>
 
 ENV SERVICE_HOME=/opt/cloud9 \
