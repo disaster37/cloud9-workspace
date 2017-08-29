@@ -40,7 +40,7 @@ RUN \
 # Install some usefull tools
 RUN apk update &&\
     apk upgrade &&\
-    apk add wget curl openssh-client git vim sudo bash make gcc python2 ca-certificates libressl tmux
+    apk add wget curl openssh-client git vim sudo bash make gcc python2 ca-certificates libressl tmux tar
 
 # Install cloud9
 USER dev
