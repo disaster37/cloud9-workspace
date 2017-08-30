@@ -63,9 +63,9 @@ RUN \
     echo "NPM version: $(npm --version)" &&\
     echo "Docker version: $(docker -v)" &&\
     echo "Docker-compose version: $(docker-compose --version)" &&\
-    echo "Emberjs version: $(ember --version)"
-    echo "Python version: $(python3 --version)"
-    echo "Pip version: $(pip3 --version)"
+    echo "Emberjs version: $(ember --version)" &&\
+    echo "Python version: $(python3 --version)" &&\
+    echo "Pip version: $(pip3 --version)" &&\
     
 RUN \
     chmod +x /scripts/*.sh &&\
