@@ -13,8 +13,7 @@ ENV SERVICE_HOME=/opt/cloud9 \
     NODE_BRANCH=6.x \
     DOCKER_VERSION=17.06.1-ce \
     PYTHON_VERSION=3.6.2 \
-    LANG=C.UTF-8 \
-    PATH=/usr/local/bin:/go/bin:/usr/local/go/bin:$PATH
+    LANG=C.UTF-8
 
 
 
@@ -28,8 +27,8 @@ RUN \
 # Install required and some extra tools
 RUN apt-get update &&\
     apt-get upgrade -y &&\
-    apt-get install -y python build-essential g++ libssl-dev git libxml2-dev tmux &&\
-    apt-get install -y wget bash curl vim sudo aptitude
+    apt-get install -y python build-essential g++ libssl-dev libxml2-dev tmux &&\
+    apt-get install -y wget bash curl vim sudo aptitude git
 
 # Install cloud9
 USER $USER
@@ -43,7 +42,7 @@ USER root
 # Configure sudo and Clean image
 RUN \
     echo "%sudo ALL = NOPASSWD : ALL" >> /etc/sudoers &&\
-    apt-get autoremove -y python build-essential g++ libssl-dev git libxml2-dev &&\
+    apt-get autoremove -y python build-essential g++ libssl-dev libxml2-dev &&\
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
     
@@ -72,6 +71,7 @@ RUN \
     chmod +x /scripts/*.sh &&\
     chmod -R 777 /scripts
 
+ENV PATH "/usr/local/bin:/usr/local/go/bin:${PATH}"
 USER $USER
 
 WORKDIR "$SERVICE_WORK"
