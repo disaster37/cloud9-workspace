@@ -10,7 +10,7 @@ ENV SERVICE_HOME=/opt/cloud9 \
     EMBER_VERSION=2.14.2 \
     DOCKER_COMPOSE_VERSION=1.15.0 \
     GOLANG_VERSION=1.8.3 \
-    NODE_VERSION=6.11.2 \
+    NODE_BRANCH=6.x \
     PYTHON_VERSION=3.6.2 \
     PYTHON_PIP_VERSION=9.0.1 \
     DOCKER_VERSION=17.06.1-ce \
@@ -58,7 +58,8 @@ RUN \
 
 # Install package for developer
 RUN \
-    sh /scripts/install_golang.sh
+    sh /scripts/install_golang.sh &&\
+    sh /scripts/install_docker.sh
     
 
 RUN \
