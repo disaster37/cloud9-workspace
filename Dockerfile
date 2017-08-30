@@ -27,8 +27,8 @@ RUN \
 # Install required and some extra tools
 RUN apt-get update &&\
     apt-get upgrade -y &&\
-    apt-get install -y python build-essential g++ libssl-dev libxml2-dev tmux &&\
-    apt-get install -y wget bash curl vim sudo aptitude git
+    apt-get install -y --no-install-recommends python build-essential g++ libssl-dev libxml2-dev tmux &&\
+    apt-get install -y --no-install-recommends wget bash curl vim sudo aptitude git
 
 # Install cloud9
 USER $USER
