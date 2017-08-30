@@ -7,6 +7,7 @@ ENV SERVICE_HOME=/opt/cloud9 \
     USER=dev \
     DOCKER_HOST=docker:2375 \
     GOPATH=${SERVICE_WORK}/go \
+    GOROOT=/usr/local/go \
     EMBER_VERSION=2.14.2 \
     DOCKER_COMPOSE_VERSION=1.15.0 \
     GOLANG_VERSION=1.8.3 \
