@@ -11,9 +11,8 @@ ENV SERVICE_HOME=/opt/cloud9 \
     DOCKER_COMPOSE_VERSION=1.15.0 \
     GOLANG_VERSION=1.8.3 \
     NODE_BRANCH=6.x \
-    PYTHON_VERSION=3.6.2 \
-    PYTHON_PIP_VERSION=9.0.1 \
     DOCKER_VERSION=17.06.1-ce \
+    PYTHON_VERSION=3.6.2 \
     LANG=C.UTF-8 \
     PATH=/usr/local/bin:/go/bin:/usr/local/go/bin:$PATH
 
@@ -25,13 +24,6 @@ RUN \
     mkdir -p $SERVICE_HOME $SERVICE_WORK && \
     chown -R dev $SERVICE_WORK &&\
     chown -R dev $SERVICE_HOME
-
-# Install devs require language and tools
-#RUN sh /tmp/install_golang.sh
-#RUN sh /tmp/install_node.sh
-#RUN sh /tmp/install_python.sh
-#RUN sh /tmp/install_docker.sh
-#RUN sh /tmp/install_gitflow.sh
 
 # Install required and some extra tools
 RUN apt-get update &&\
@@ -61,15 +53,15 @@ RUN \
     sh /scripts/install_golang.sh &&\
     sh /scripts/install_docker.sh &&\
     sh /scripts/install_node.sh &&\
-    sh /scripts/install_emberjs.sh
+    sh /scripts/install_emberjs.sh &&\
+    sh /scripts/install_gitflow.sh &&\
+    sh /scripts/install_python.sh
     
 
 RUN \
     echo "Go version: $(go version)" &&\
     echo "Node version: $(node --version)" &&\
     echo "NPM version: $(npm --version)" &&\
-    echo "Python version: $(python --version)" &&\
-    echo "Pip version: $(pip --version)" &&\
     echo "Docker version: $(docker -v)" &&\
     echo "Docker-compose version: $(docker-compose --version)" &&\
     echo "Emberjs version: $(ember --version)"
