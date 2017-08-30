@@ -15,7 +15,7 @@ ENV SERVICE_HOME=/opt/cloud9 \
     PYTHON_PIP_VERSION=9.0.1 \
     DOCKER_VERSION=17.06.1-ce \
     LANG=C.UTF-8
-#    PATH=/usr/local/bin:$GOPATH/bin:/usr/local/go/bin:$PATH
+    PATH=/usr/local/bin:/go/bin:/usr/local/go/bin:$PATH
 
 
 
@@ -33,7 +33,7 @@ RUN \
 #RUN sh /tmp/install_docker.sh
 #RUN sh /tmp/install_gitflow.sh
 
-# Install some usefull tools
+# Install required and some extra tools
 RUN apt-get update &&\
     apt-get upgrade -y &&\
     apt-get install -y python build-essential g++ libssl-dev git libxml2-dev tmux &&\
@@ -41,17 +41,25 @@ RUN apt-get update &&\
 
 # Install cloud9
 USER $USER
-RUN git clone $SERVICE_URL $SERVICE_HOME && \
+RUN \
+    git clone $SERVICE_URL $SERVICE_HOME && \
     cd $SERVICE_HOME && \
     scripts/install-sdk.sh && \
     sed -i -e 's_127.0.0.1_0.0.0.0_g' $SERVICE_HOME/configs/standalone.js
 USER root
 
-# Clean image
+# Configure sudo and Clean image
 RUN \
+    echo "%sudo ALL = NOPASSWD : ALL" >> /etc/sudoers &&\
     apt-get autoremove -y python build-essential g++ libssl-dev git libxml2-dev &&\
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    
+
+# Install package for developer
+RUN \
+    sh /scripts/install_golang.sh
+    
 
 RUN \
     echo "Go version: $(go version)" &&\

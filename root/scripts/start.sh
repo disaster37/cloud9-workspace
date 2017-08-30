@@ -5,6 +5,6 @@ if [ "x$GIT_REPO" != "x" ]; then
 	git clone $GIT_REPO
 fi
 
-chown -R dev:dev /home/dev
+chown -R ${USER}:${USER} /home/${USER}
 
 cd $SERVICE_HOME && /home/${USER}/.c9/node/bin/node server.js $@
