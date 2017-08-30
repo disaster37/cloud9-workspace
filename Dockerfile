@@ -14,7 +14,7 @@ ENV SERVICE_HOME=/opt/cloud9 \
     PYTHON_VERSION=3.6.2 \
     PYTHON_PIP_VERSION=9.0.1 \
     DOCKER_VERSION=17.06.1-ce \
-    LANG=C.UTF-8
+    LANG=C.UTF-8 \
     PATH=/usr/local/bin:/go/bin:/usr/local/go/bin:$PATH
 
 
