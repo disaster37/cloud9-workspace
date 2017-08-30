@@ -54,7 +54,8 @@ RUN \
     sh /scripts/install_node.sh &&\
     sh /scripts/install_emberjs.sh &&\
     sh /scripts/install_gitflow.sh &&\
-    sh /scripts/install_python.sh
+    sh /scripts/install_python.sh &&\
+    echo "export PATH=$GOPATH/bin:/usr/local/go/bin:$PATH" >> /home/${USER}/.bashrc
     
 
 RUN \
