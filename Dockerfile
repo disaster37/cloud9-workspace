@@ -19,7 +19,7 @@ ENV SERVICE_HOME=/opt/cloud9 \
 
 
 
-#COPY root /
+COPY root /
 RUN \
     useradd -G sudo -m $USER &&\
     mkdir -p $SERVICE_HOME $SERVICE_WORK && \
@@ -63,8 +63,8 @@ RUN \
     echo "Emberjs version: $(ember --version)"
     
 RUN \
-    chmod +x /tmp/*.sh &&\
-    chmod -R 777 /tmp
+    chmod +x /scripts/*.sh &&\
+    chmod -R 777 /scripts
 
 USER $USER
 
@@ -72,5 +72,5 @@ WORKDIR "$SERVICE_WORK"
 
 EXPOSE 8080
 VOLUME ["$SERVICE_WORK"]
-ENTRYPOINT ["/tmp/start.sh"]
+ENTRYPOINT ["/scripts/start.sh"]
 CMD ["--listen 0.0.0.0 -p 8080 -w $SERVICE_WORK"]
