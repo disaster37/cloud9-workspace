@@ -19,7 +19,7 @@ ENV SERVICE_HOME=/opt/cloud9 \
 
 
 
-COPY root /
+#COPY root /
 RUN \
     useradd -G sudo -m $USER &&\
     mkdir -p $SERVICE_HOME $SERVICE_WORK && \
