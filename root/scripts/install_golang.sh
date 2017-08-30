@@ -9,7 +9,7 @@ mv go /usr/local
 export PATH="/usr/local/go/bin:$PATH";
 go version
 
-GOPATH=/go
+GOPATH=$SERVICE_WORK/go
 PATH=$GOPATH/bin:/usr/local/go/bin:$PATH
 
 mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
