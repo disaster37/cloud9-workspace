@@ -69,7 +69,7 @@ RUN \
     chmod +x /scripts/*.sh &&\
     chmod -R 777 /scripts
 
-ENV PATH "/usr/local/bin:/usr/local/go/bin:${PATH}"
+ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
 USER $USER
 
 WORKDIR "$SERVICE_WORK"
