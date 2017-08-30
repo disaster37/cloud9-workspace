@@ -59,7 +59,9 @@ RUN \
 # Install package for developer
 RUN \
     sh /scripts/install_golang.sh &&\
-    sh /scripts/install_docker.sh
+    sh /scripts/install_docker.sh &&\
+    sh /scripts/install_node.sh &&\
+    sh /scripts/install_emberjs.sh
     
 
 RUN \
@@ -69,6 +71,7 @@ RUN \
     echo "Python version: $(python --version)" &&\
     echo "Pip version: $(pip --version)" &&\
     echo "Docker version: $(docker -v)" &&\
+    echo "Docker-compose version: $(docker-compose --version)" &&\
     echo "Emberjs version: $(ember --version)"
     
 RUN \
