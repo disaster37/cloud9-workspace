@@ -5,9 +5,6 @@ ENV SERVICE_HOME=/opt/cloud9 \
     SERVICE_URL=https://github.com/c9/core.git \
     SERVICE_WORK=/workspace \
     USER=dev \
-    GROUP=dev \
-    UID=1001 \
-    GID=1001 \
     DOCKER_HOST=docker:2375 \
     GOPATH=/go \
     EMBER_VERSION=2.14.2 \
@@ -24,7 +21,7 @@ ENV SERVICE_HOME=/opt/cloud9 \
 
 COPY root /
 RUN \
-    useradd -G sudo -m dev &&\
+    useradd -G sudo -m $USER &&\
     mkdir -p $SERVICE_HOME $SERVICE_WORK && \
     chown -R dev $SERVICE_WORK &&\
     chown -R dev $SERVICE_HOME
@@ -39,10 +36,11 @@ RUN \
 # Install some usefull tools
 RUN apt-get update &&\
     apt-get upgrade -y &&\
-    apt-get install --allow-unauthenticated -y python build-essential g++ libssl-dev apache2-utils git libxml2-dev tmux wget bash curl
+    apt-get install -y python build-essential g++ libssl-dev git libxml2-dev tmux &&\
+    apt-get install -y wget bash curl vim sudo aptitude
 
 # Install cloud9
-USER dev
+USER $USER
 RUN git clone $SERVICE_URL $SERVICE_HOME && \
     cd $SERVICE_HOME && \
     scripts/install-sdk.sh && \
@@ -50,7 +48,10 @@ RUN git clone $SERVICE_URL $SERVICE_HOME && \
 USER root
 
 # Clean image
-RUN rm /tmp/* /var/cache/apk/*
+RUN \
+    apt-get autoremove -y python build-essential g++ libssl-dev git libxml2-dev &&\
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN \
     echo "Go version: $(go version)" &&\
@@ -65,7 +66,7 @@ RUN \
     chmod +x /tmp/*.sh &&\
     chmod -R 777 /tmp
 
-USER dev
+USER $USER
 
 WORKDIR "$SERVICE_WORK"
 
