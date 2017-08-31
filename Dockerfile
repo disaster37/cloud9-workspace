@@ -29,7 +29,8 @@ RUN \
 RUN apt-get update &&\
     apt-get upgrade -y &&\
     apt-get install -y --no-install-recommends python build-essential g++ libssl-dev libxml2-dev tmux &&\
-    apt-get install -y --no-install-recommends wget bash curl git ca-certificates gnupg make
+    apt-get install -y --no-install-recommends wget bash curl git ca-certificates gnupg make sudo vim aptitude
+    
 
 # Install cloud9
 USER $USER
@@ -76,7 +77,7 @@ ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
 # Ensure all extra package is still here
 # Install required and some extra tools
 RUN apt-get update &&\
-    apt-get install -y --no-install-recommends wget bash curl vim sudo aptitude git ca-certificates gnupg make
+    apt-get install -y --no-install-recommends make
 
 USER $USER
 
