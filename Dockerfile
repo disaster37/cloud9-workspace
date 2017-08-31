@@ -6,7 +6,7 @@ ENV SERVICE_HOME=/opt/cloud9 \
     SERVICE_WORK=/workspace \
     USER=dev \
     DOCKER_HOST=docker:2375 \
-    GOPATH=${SERVICE_WORK}/go \
+    GOPATH=/workspace/go \
     GOROOT=/usr/local/go \
     EMBER_VERSION=2.14.2 \
     DOCKER_COMPOSE_VERSION=1.15.0 \
@@ -74,10 +74,7 @@ RUN \
 
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
 
-# Ensure all extra package is still here
-# Install required and some extra tools
-RUN apt-get update &&\
-    apt-get install -y --no-install-recommends make
+
 
 USER $USER
 
