@@ -5,7 +5,6 @@ ENV SERVICE_HOME=/opt/cloud9 \
     SERVICE_URL=https://github.com/c9/core.git \
     SERVICE_WORK=/workspace \
     USER=dev \
-    DOCKER_HOST=docker:2375 \
     GOPATH=/workspace/go \
     GOROOT=/usr/local/go \
     EMBER_VERSION=2.14.2 \
