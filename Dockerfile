@@ -56,7 +56,8 @@ RUN \
     sh /scripts/install_emberjs.sh &&\
     sh /scripts/install_gitflow.sh &&\
     sh /scripts/install_python.sh &&\
-    echo "export PATH=$GOPATH/bin:/usr/local/go/bin:$PATH" >> /home/${USER}/.bashrc
+    echo "export PATH=$GOPATH/bin:/usr/local/go/bin:$PATH" >> /home/${USER}/.bashrc &&\
+    usermode -a -G docker ${USER}
     
 
 RUN \

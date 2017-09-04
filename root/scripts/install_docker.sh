@@ -18,6 +18,7 @@ tar --extract \
 	--directory /usr/local/bin/ \
     ;
 rm docker.tgz;
+groupadd docker -g 999
 
 # Install docker compose
 curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
