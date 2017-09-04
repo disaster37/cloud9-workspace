@@ -12,6 +12,10 @@ else
 	ln -s /workspace/.gitconfig /home/${USER}/.gitconfig
 fi
 
+if [ -f "/var/run/docker.sock" ]; then
+	chown -R ${USER} /var/run/docker.sock
+fi
+
 chown -R ${USER}:${USER} /home/${USER}
 
 cd $SERVICE_HOME && /home/${USER}/.c9/node/bin/node server.js $@
