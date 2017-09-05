@@ -6,6 +6,7 @@ cd /tmp
 wget https://storage.googleapis.com/golang/go${GOLANG_VERSION}.linux-amd64.tar.gz
 tar -xvf go${GOLANG_VERSION}.linux-amd64.tar.gz
 mv go /usr/local
+ln -s /usr/local/go/bin/* /usr/local/bin/
 export PATH="/usr/local/go/bin:$PATH";
 go version
 
