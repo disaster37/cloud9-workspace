@@ -4,7 +4,7 @@ MAINTAINER Disaster <linuxworkgroup@hotmail.com>
 ENV SERVICE_HOME=/opt/cloud9 \
     SERVICE_URL=https://github.com/c9/core.git \
     SERVICE_WORK=/workspace \
-    USER=dev \
+    SERVICE_USER=dev \
     GOPATH=/workspace/go \
     GOROOT=/usr/local/go \
     EMBER_VERSION=2.14.2 \
@@ -19,7 +19,7 @@ ENV SERVICE_HOME=/opt/cloud9 \
 
 COPY root /
 RUN \
-    useradd -G sudo -m $USER &&\
+    useradd -G sudo -m ${SERVICE_USER} &&\
     mkdir -p $SERVICE_HOME $SERVICE_WORK && \
     chown -R dev $SERVICE_WORK &&\
     chown -R dev $SERVICE_HOME
@@ -32,7 +32,7 @@ RUN apt-get update &&\
     
 
 # Install cloud9
-USER $USER
+USER ${SERVICE_USER}
 RUN \
     git clone $SERVICE_URL $SERVICE_HOME && \
     cd $SERVICE_HOME && \
@@ -56,8 +56,8 @@ RUN \
     sh /scripts/install_emberjs.sh &&\
     sh /scripts/install_gitflow.sh &&\
     sh /scripts/install_python.sh &&\
-    echo "export PATH=$GOPATH/bin:/usr/local/go/bin:$PATH" >> /home/${USER}/.bashrc &&\
-    usermod -a -G docker ${USER}
+    echo "export PATH=$GOPATH/bin:/usr/local/go/bin:$PATH" >> /home/${SERVICE_USER}/.bashrc &&\
+    usermod -a -G docker ${SERVICE_USER}
     
 
 RUN \
@@ -75,8 +75,6 @@ RUN \
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
 
 
-
-USER $USER
 
 WORKDIR "$SERVICE_WORK"
 

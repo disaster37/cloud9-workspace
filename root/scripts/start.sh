@@ -6,14 +6,14 @@ if [ "x$GIT_REPO" != "x" ]; then
 fi
 
 if [ -f "/workspace/.gitconfig" ]; then
-	ln -s /workspace/.gitconfig /home/${USER}/.gitconfig
+	ln -s /workspace/.gitconfig /home/${SERVICE_USER}/.gitconfig
 else
 	touch /workspace/.gitconfig
-	ln -s /workspace/.gitconfig /home/${USER}/.gitconfig
+	ln -s /workspace/.gitconfig /home/${SERVICE_USER}/.gitconfig
 fi
 
 
-chown -R ${USER}:${USER} /home/${USER}
-chown -R ${USER}:${USER} /workspace
+chown -R ${SERVICE_USER}:${SERVICE_USER} /home/${SERVICE_USER}
+chown -R ${SERVICE_USER}:${SERVICE_USER} /workspace
 
-cd $SERVICE_HOME && /home/${USER}/.c9/node/bin/node server.js $@
+su - ${SERVICE_USER} -c "cd $SERVICE_HOME && /home/${SERVICE_USER}/.c9/node/bin/node server.js $@"
