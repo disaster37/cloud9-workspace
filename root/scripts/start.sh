@@ -14,5 +14,6 @@ fi
 
 
 chown -R ${USER}:${USER} /home/${USER}
+chown -R ${USER}:${USER} /workspace
 
 cd $SERVICE_HOME && /home/${USER}/.c9/node/bin/node server.js $@
