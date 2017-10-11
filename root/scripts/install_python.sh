@@ -17,3 +17,5 @@ rm -rf Python-${PYTHON_VERSION}
 apt-get autoremove -y build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev llvm libncurses5-dev  libncursesw5-dev xz-utils tk-dev &&\
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+    
+pip3.6 install yapf
