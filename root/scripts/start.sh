@@ -16,4 +16,6 @@ fi
 chown -R ${SERVICE_USER}:${SERVICE_USER} /home/${SERVICE_USER}
 chown -R ${SERVICE_USER}:${SERVICE_USER} /workspace
 
+update-ca-certificates
+
 su ${SERVICE_USER} -c "cd $SERVICE_HOME && /home/${SERVICE_USER}/.c9/node/bin/node server.js $@"
