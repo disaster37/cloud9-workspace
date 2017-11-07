@@ -28,7 +28,7 @@ RUN \
 RUN apt-get update &&\
     apt-get upgrade -y &&\
     apt-get install -y --no-install-recommends python build-essential g++ libssl-dev libxml2-dev tmux &&\
-    apt-get install -y --no-install-recommends wget bash curl git ca-certificates gnupg make sudo vim aptitude zip
+    apt-get install -y --no-install-recommends wget bash curl git ca-certificates gnupg make sudo vim aptitude zip openssh-client
     
 
 # Install cloud9
