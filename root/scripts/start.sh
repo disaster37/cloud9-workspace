@@ -40,7 +40,8 @@ if [ -d "/workspace/.cloud9/.ssh" ]; then
 	rm -rf /home/${SERVICE_USER}/.ssh
 	ln -s /workspace/.cloud9/.ssh /home/${SERVICE_USER}/.ssh
 else
-	ssh-keygen -b 2048 -t rsa -f /workspace/.cloud9/.ssh -q -N ""
+	mkdir /workspace/.cloud9/.ssh
+	ssh-keygen -b 2048 -t rsa -f /workspace/.cloud9/.ssh/id_rsa -q -N ""
 	rm -rf /home/${SERVICE_USER}/.ssh
 	ln -s /workspace/.cloud9/.ssh /home/${SERVICE_USER}/.ssh
 fi
