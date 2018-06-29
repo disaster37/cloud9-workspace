@@ -35,6 +35,16 @@ else
 	ln -s /workspace/.cloud9/.bashrc /home/${SERVICE_USER}/.bashrc
 fi
 
+# Manage ssh key for git
+if [ -d "/workspace/.cloud9/.ssh" ]; then
+	rm -rf /home/${SERVICE_USER}/.ssh
+	ln -s /workspace/.cloud9/.ssh /home/${SERVICE_USER}/.ssh
+else
+	ssh-keygen -b 2048 -t rsa -f /workspace/.cloud9/.ssh -q -N ""
+	rm -rf /home/${SERVICE_USER}/.ssh
+	ln -s /workspace/.cloud9/.ssh /home/${SERVICE_USER}/.ssh
+fi
+
 # Manage cloud9 user setting
 if [ -f "/workspace/.cloud9/.user.settings" ]; then
 	rm /home/${SERVICE_USER}/.c9/user.settings
