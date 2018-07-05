@@ -12,6 +12,7 @@ fi
 
 # Manage git config
 if [ -f "/workspace/.cloud9/.gitconfig" ]; then
+	rm -rf /home/${SERVICE_USER}/.gitconfig
 	ln -s /workspace/.cloud9/.gitconfig /home/${SERVICE_USER}/.gitconfig
 else
 	touch /workspace/.cloud9/.gitconfig
@@ -20,6 +21,7 @@ fi
 
 # Manage docker config
 if [ -d "/workspace/.cloud9/.docker" ]; then
+	rm -rf /home/${SERVICE_USER}/.docker
 	ln -s /workspace/.cloud9/.docker /home/${SERVICE_USER}/.docker
 else
 	mkdir /workspace/.cloud9/.docker
@@ -28,7 +30,7 @@ fi
 
 # Manage bashrc
 if [ -f "/workspace/.cloud9/.bashrc" ]; then
-	rm /home/${SERVICE_USER}/.bashrc
+	rm -rf /home/${SERVICE_USER}/.bashrc
 	ln -s /workspace/.cloud9/.bashrc /home/${SERVICE_USER}/.bashrc
 else
 	mv /home/${SERVICE_USER}/.bashrc /workspace/.cloud9/.bashrc
