@@ -48,14 +48,6 @@ else
 	ln -s /workspace/.cloud9/.ssh /home/${SERVICE_USER}/.ssh
 fi
 
-# Manage cloud9 user setting
-if [ -f "/workspace/.cloud9/.user.settings" ]; then
-	rm /home/${SERVICE_USER}/.c9/user.settings
-	ln -s /workspace/.cloud9/.user.settings /home/${SERVICE_USER}/.c9/user.settings
-else
-	mv /home/${SERVICE_USER}/.c9/user.settings /workspace/.cloud9/.user.settings
-	ln -s /workspace/.cloud9/.user.settings /home/${SERVICE_USER}/.c9/user.settings
-fi
 
 
 chown -R ${SERVICE_USER}:${SERVICE_USER} /home/${SERVICE_USER}
