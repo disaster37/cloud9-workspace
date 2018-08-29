@@ -1,4 +1,4 @@
-FROM debian:stable-slim
+FROM debian:buster-slim
 MAINTAINER Disaster <linuxworkgroup@hotmail.com>
 
 ENV SERVICE_HOME=/opt/cloud9 \
@@ -27,7 +27,7 @@ RUN \
 # Install required and some extra tools
 RUN apt-get update &&\
     apt-get upgrade -y &&\
-    apt-get install -y --no-install-recommends python build-essential g++ libssl-dev libxml2-dev tmux &&\
+    apt-get install -y --no-install-recommends python build-essential g++ libxml2-dev &&\
     apt-get install -y --no-install-recommends wget bash curl git ca-certificates gnupg make sudo vim aptitude zip openssh-client
     
 
@@ -81,4 +81,4 @@ WORKDIR "$SERVICE_WORK"
 EXPOSE 8080
 VOLUME ["$SERVICE_WORK"]
 ENTRYPOINT ["/scripts/start.sh"]
-CMD ["--listen 0.0.0.0 -p 8080 -w $SERVICE_WORK"]
+CMD ["--listen 0.0.0.0 --collab true --setting-path $SERVICE_WORK/.c9 -p 8080 -w $SERVICE_WORK"]
