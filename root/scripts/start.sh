@@ -50,7 +50,7 @@ fi
 
 
 
-chown -R ${SERVICE_USER}:${SERVICE_USER} /home/${SERVICE_USER}
+#chown -R ${SERVICE_USER}:${SERVICE_USER} /home/${SERVICE_USER}
 chown -R ${SERVICE_USER}:${SERVICE_USER} /workspace
 
 update-ca-certificates
